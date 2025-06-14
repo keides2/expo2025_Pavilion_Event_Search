@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>Expo 2025 Pavilion Event Search &sol; Expo2025 &#x30d1;&#x30d3;&#x30ea;&#x30aa;&#x30f3;&#x30a4;&#x30d9;&#x30f3;&#x30c8;&#x691c;&#x7d22;</title>
+            <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+            
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+<style>
+:root {
+  --color-note: #0969da;
+  --color-tip: #1a7f37;
+  --color-warning: #9a6700;
+  --color-severe: #bc4c00;
+  --color-caution: #d1242f;
+  --color-important: #8250df;
+}
+
+</style>
+<style>
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-note: #2f81f7;
+    --color-tip: #3fb950;
+    --color-warning: #d29922;
+    --color-severe: #db6d28;
+    --color-caution: #f85149;
+    --color-important: #a371f7;
+  }
+}
+
+</style>
+<style>
+.markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: .25em solid #888;
+}
+
+.markdown-alert>:first-child {
+  margin-top: 0
+}
+
+.markdown-alert>:last-child {
+  margin-bottom: 0
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1
+}
+
+.markdown-alert .markdown-alert-title .octicon {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--color-caution);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--color-caution);
+}
+
+</style>
+        
+        </head>
+        <body class="vscode-body vscode-light">
+            <h1 id="expo-2025-pavilion-event-search--expo2025-パビリオンイベント検索">Expo 2025 Pavilion Event Search / Expo2025 パビリオンイベント検索</h1>
+<p><img src="file:///c:\Users\HP\Docs\GitHub\keides2\expo2025_Pavilion_Event_Search\image-1.png" alt="万博ロゴ"></p>
+<p>3日前空き枠先着申し込みのページの検索用UIが、思いつくパビリオン名を繰り返し入力するというものでした(※)。これは疲れます。APIも用意されていないようなので、あらかじめパビリオンのリストを作成しておいて、自動的に繰り返し検索できるコードを<code>Copilot</code>を使って作成しました。</p>
+<p>※後でわかりましたが、<strong>検索ボックスを空のまま検索ボタンを押すと全てのパビリオンとイベントの検索結果を表示することができました。</strong>（検索ボックスにうっすらと「入力せず検索ですべて表示」と書いてありました。</p>
+<p>This repository contains a Python script that automates the search for pavilion event tickets on the Expo 2025 ticket website using Playwright and Pandas.<br>
+本リポジトリは、Playwright と Pandas を用いて Expo 2025 チケットサイトでパビリオンのイベント情報を自動検索する Python スクリプトを含みます。</p>
+<h2 id="万博サイトログイン検索ページまでの操作手順">万博サイトログイン～検索ページまでの操作手順</h2>
+<p>4枚の手持ちチケットを全てを空き枠先着予約に申し込む場合です。（手持ちチケットをすべて選択し、「選択したチケットで申し込む」場合です）</p>
+<ol>
+<li>
+<p>万博サイトにログインします
+<img src="file:///c:\Users\HP\Docs\GitHub\keides2\expo2025_Pavilion_Event_Search\image-2.png" alt="alt text"></p>
+</li>
+<li>
+<p>ワンタイムパスワードを入力します
+メール利用の場合
+<img src="file:///c:\Users\HP\Docs\GitHub\keides2\expo2025_Pavilion_Event_Search\image-3.png" alt="alt text"></p>
+</li>
+<li>
+<p>予約・抽選申込・変更・入場する（マイチケット）を押します
+<img src="file:///c:\Users\HP\Docs\GitHub\keides2\expo2025_Pavilion_Event_Search\image-4.png" alt="alt text"></p>
+</li>
+<li>
+<p>チケットを選択します
+まとめて予約・抽選に申し込むを押します
+<img src="file:///c:\Users\HP\Docs\GitHub\keides2\expo2025_Pavilion_Event_Search\image-5.png" alt="alt text"></p>
+</li>
+<li>
+<p>空き枠先着申込を押します
+<img src="file:///c:\Users\HP\Docs\GitHub\keides2\expo2025_Pavilion_Event_Search\image-6.png" alt="alt text"></p>
+</li>
+<li>
+<p>選択したチケットで申し込むを押します
+<img src="file:///c:\Users\HP\Docs\GitHub\keides2\expo2025_Pavilion_Event_Search\image-7.png" alt="alt text"></p>
+</li>
+<li>
+<p>パビリオン・イベントを選択するページで待機します
+<img src="file:///c:\Users\HP\Docs\GitHub\keides2\expo2025_Pavilion_Event_Search\image-8.png" alt="alt text"></p>
+</li>
+</ol>
+<h2 id="features--特徴">Features / 特徴</h2>
+<ul>
+<li>
+<p><strong>Persistent Login Session / 永続的なログインセッション</strong><br>
+The script uses a persistent Chrome user data directory to maintain login states.<br>
+スクリプトは、Chrome のユーザーデータディレクトリを使用してログイン状態を保持します。</p>
+</li>
+<li>
+<p><strong>Automated Search Process / 自動検索プロセス</strong><br>
+Automatically fills in the search form and triggers the search by clicking the search button.<br>
+検索フォームに自動でキーワードを入力し、検索ボタン（<code>&lt;button class=&quot;basic-btn type2 style_search_btn__ZuOpx&quot;&gt;</code>）を自動クリックします。</p>
+</li>
+<li>
+<p><strong>Conditional Pause / 条件付きポーズ</strong><br>
+If search results are found, the script pauses for user verification before proceeding.<br>
+検索結果が見つかった場合は、ユーザーが確認できるように自動で一時停止します。該当なしの場合はそのまま自動継続します。</p>
+</li>
+<li>
+<p><strong>Result Logging / 結果の記録</strong><br>
+Logs the search results in a CSV file (<code>availability_results.csv</code>).<br>
+検索結果は CSV ファイル（<code>availability_results.csv</code>）に記録します。</p>
+</li>
+</ul>
+<h2 id="パビリオンリストの自動生成">パビリオンリストの自動生成</h2>
+<p>公式PDFからパビリオンリスト（CSV）を自動生成する場合は、<code>pavilions_list.py</code> を利用してください。<br>
+事前に <code>tabula-py</code> をインストールし、PDFをダウンロードしておきます。</p>
+<p>公式サイトから、以下のPDFを取得できました。</p>
+<ul>
+<li><a href="https://www.expo2025.or.jp/en/wp-content/uploads/sites/2/2025/05/05130900_servicehours.pdf">大阪・関西万博 パビリオン一覧 (the Expo2025 Pavilions)</a></li>
+</ul>
+<pre><code class="language-bash">pip install tabula-py
+python pavilions_list.py
+</code></pre>
+<p>生成された <code>expo2025_pavilions_full.csv</code> から必要なカラムのみ抽出し、<code>pavilions.csv</code> として利用できます。</p>
+<h2 id="prerequisites--前提条件">Prerequisites / 前提条件</h2>
+<ul>
+<li><strong>Python 3.7+</strong></li>
+<li><a href="https://playwright.dev/python/">Playwright for Python</a></li>
+<li><a href="https://pandas.pydata.org/">Pandas</a></li>
+<li>A CSV file named <code>pavilions.csv</code> in the repository root, containing one pavilion name per line(or add any missing ones).<br>
+リポジトリルートに、パビリオン名称を1行ずつ記載した <code>pavilions.csv</code> を用意（足らずを追加）してください。</li>
+<li>A Chrome user profile already logged in to the Expo ticket website.<br>
+Expo チケットサイトにログイン済みの Chrome プロファイルであることが必要です。</li>
+<li><a href="https://pypi.org/project/tabula-py/">tabula-py</a>（パビリオンリスト自動生成用、必要に応じて）</li>
+</ul>
+<h2 id="installation--インストール">Installation / インストール</h2>
+<ol>
+<li>
+<p><strong>Clone the Repository / リポジトリのクローン</strong></p>
+<pre><code class="language-bash">git <span class="hljs-built_in">clone</span> https://github.com/keides2/expo2025_Pavilion_Event_Search.git
+<span class="hljs-built_in">cd</span> expo2025_Pavilion_Event_Search
+</code></pre>
+</li>
+<li>
+<p><strong>Install Required Packages / 必要なパッケージのインストール</strong></p>
+<pre><code class="language-bash">pip install playwright pandas
+</code></pre>
+</li>
+<li>
+<p><strong>Install Playwright Browsers / Playwright ブラウザのインストール</strong></p>
+<pre><code class="language-bash">playwright install
+</code></pre>
+</li>
+</ol>
+<h2 id="usage--使い方">Usage / 使い方</h2>
+<ol>
+<li>
+<p><strong>Prepare Your CSV File / CSVファイルの準備</strong>
+Make sure <code>pavilions.csv</code> is ready with one pavilion name per line.<br>
+各行にパビリオン名称を記入した <code>pavilions.csv</code> を用意してください。</p>
+</li>
+<li>
+<p><strong>Configure the Script / スクリプトを設定する</strong><br>
+Confirm that the <code>user_data_dir</code> is correctly set in <code>search_pavilions.py</code> as follows (adjust for your username):
+次のように、<code>search_pavilions.py</code> で <code>user_data_dir</code> が正しく設定されていることを確認します。（修正が必要です）</p>
+<pre><code class="language-python">user_data_dir=<span class="hljs-string">&quot;C:/Users/HP/AppData/Local/Google/Chrome/User Data&quot;</span>
+</code></pre>
+</li>
+<li>
+<p><strong>Run the Script / スクリプトを実行する</strong></p>
+<pre><code class="language-bash">python search_pavilions.py
+</code></pre>
+</li>
+<li>
+<p><strong>Manual Step – Transition from My Ticket Page / 手動ステップ – マイチケットページからの遷移</strong><br>
+After launching, the browser may initially display the My Ticket page. Manually navigate from My Ticket to the search page. When finished, press <strong>Enter</strong> at the prompt: マイチケットの選択が終わったら Enter を押してください...
+起動後、ブラウザに最初に「マイチケット」ページが表示される場合があります。「マイチケット」から検索ページへ手動で移動してください。完了したら、プロンプト「マイチケットの選択が終わったら Enter を押してください...」で<strong>Enter</strong>を押してください。</p>
+</li>
+<li>
+<p><strong>Automated Search Process / 自動検索プロセス</strong><br>
+For each pavilion name:</p>
+<ul>
+<li>
+<p>The script automatically fills in the search field (<code>input.  style_search_text__TH7D1</code>).</p>
+</li>
+<li>
+<p>It clicks the search button defined by:
+各パビリオン名について：</p>
+</li>
+<li>
+<p>スクリプトは検索フィールド（<code>input.style_search_text__TH7D1</code>）に自動的   に入力します。</p>
+</li>
+<li>
+<p>次のように定義された検索ボタンをクリックします。</p>
+<pre><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;basic-btn type2 style_search_btn__ZuOpx&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">data-message-code</span>=<span class="hljs-string">&quot;SW_GP_DL_123_0008&quot;</span>    <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;style_renderer__ip0Pm&quot;</span>&gt;</span>検索<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+</code></pre>
+</li>
+<li>
+<p>If no matching result is found (displaying &quot;検索条件を変えて検索してください。&quot;), it proceeds automatically.</p>
+</li>
+<li>
+<p>If matching results are found, the script pauses and waits for user confirmation by showing:</p>
+</li>
+<li>
+<p>一致する結果が見つからない場合（「検索条件を変えて検索してください。」と表示される場合）、自動的に処理が続行されます。</p>
+</li>
+<li>
+<p>一致する結果が見つかった場合、スクリプトは一時停止し、次の内容を表示してユーザーの確認を待ちます。</p>
+</li>
+</ul>
+<pre><code class="language-text">検索結果が見つかりました。内容を確認して、次に進むには Enter を押してください...
+</code></pre>
+</li>
+<li>
+<p><strong>Results</strong><br>
+After processing, the results are saved in <code>availability_results.csv</code>.<br>
+結果は <code>availability_results.csv</code> にログ出力されます。</p>
+</li>
+</ol>
+<h2 id="script-overview--スクリプト概要">Script Overview / スクリプト概要</h2>
+<p>The main script (<code>search_pavilions.py</code>) uses Playwright to navigate to the search page, perform automated searches for each pavilion name, and capture the search results.<br>
+主なスクリプト (<code>search_pavilions.py</code>) は、Playwright を使用して検索ページへ移動し、各パビリオン名称で自動検索を行い、結果をスクレイピングします。</p>
+<h2 id="customization--カスタマイズ">Customization / カスタマイズ</h2>
+<ul>
+<li>
+<p><strong>Selectors / セレクターの変更</strong><br>
+If the website structure changes, update the selectors in the script (e.g., <code>input.style_search_text__TH7D1</code> for the search field and <code>button.basic-btn.type2.style_search_btn__ZuOpx</code> for the search button).<br>
+サイトの HTML 構造が変わった場合、スクリプト内のセレクターを修正してください。</p>
+</li>
+<li>
+<p><strong>Timeout Settings / タイムアウト設定</strong><br>
+Adjust the timeout values in the navigation and waiting functions if necessary.<br>
+ページ遷移や要素待機のタイムアウト値を必要に応じて調整してください。</p>
+</li>
+</ul>
+<h2 id="troubleshooting--トラブルシューティング">Troubleshooting / トラブルシューティング</h2>
+<ul>
+<li>
+<p><strong>Timeout or Element Not Found Errors / タイムアウトエラー・要素が見つからない場合</strong><br>
+Verify that you are on the correct search page and that the selectors match the current website.<br>
+正しい検索ページにいるか、セレクターがサイトの構造に合致しているか確認してください。</p>
+</li>
+<li>
+<p><strong>Login Issues / ログインの問題</strong><br>
+Ensure the <code>user_data_dir</code> path is correct and that your Chrome profile is logged in.<br>
+<code>user_data_dir</code> のパスが正しく、Chrome プロフィールでログイン済みであることを確認してください。</p>
+</li>
+</ul>
+<h2 id="license--ライセンス">License / ライセンス</h2>
+<p>This project is licensed under the MIT License.<br>
+本プロジェクトは MIT ライセンスのもとで公開されています。</p>
+<h2 id="acknowledgments--謝辞">Acknowledgments / 謝辞</h2>
+<ul>
+<li><a href="https://playwright.dev">Playwright</a></li>
+<li><a href="https://pandas.pydata.org/">Pandas</a></li>
+<li>Expo 2025 Ticket System / Expo 2025 チケットシステム</li>
+</ul>
+<h2 id="note--メモ">Note / メモ</h2>
+<ul>
+<li>Replace <code>yourusername</code> in the clone instruction with your actual GitHub username.</li>
+<li>クローン時の <code>yourusername</code> をご自身の GitHub ユーザー名に置き換えてください。</li>
+</ul>
+<hr>
+<p>2025/06/14 keides2 初版</p>
+
+            
+            
+        </body>
+        </html>
