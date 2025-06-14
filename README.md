@@ -1,0 +1,2 @@
+# expo2025_Pavilion_Event_Search
+3日前空き枠先着ページからパビリオン・イベントを検索する
